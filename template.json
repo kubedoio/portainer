@@ -1,0 +1,251 @@
+{
+  "version": "2",
+  "templates": [
+  {
+    "type": 3,
+    "title": "WordPress",
+    "description": "WordPress setup with a MySQL database",
+    "note": "Deploys a WordPress instance connected to a MySQL database.",
+    "categories": ["CMS"],
+    "platform": "linux",
+    "logo": "https://portainer-io-assets.sfo2.digitaloceanspaces.com/logos/wordpress.png",
+    "repository": {
+      "url": "https://github.com/portainer/templates",
+      "stackfile": "stacks/wordpress/docker-compose.yml"
+    },
+    "env": [
+      {
+        "name": "MYSQL_DATABASE_PASSWORD",
+        "label": "Database root password",
+        "description": "Password used by the MySQL root user."
+      }
+    ]
+  },
+  
+  {
+    "categories": [
+      "Security",
+      "Tools"
+    ],
+    "description": "This is a Bitwarden server API implementation written in Rust compatible with upstream Bitwarden clients*, perfect for self-hosted deployment where running the official resource-heavy service might not be ideal.",
+    "image": "vaultwarden/server:latest",
+    "logo": "https://raw.githubusercontent.com/Qballjos/portainer_templates/master/Images/bitwarden.png",
+    "name": "vaultwarden",
+    "note": "This project is not associated with the Bitwarden project nor 8bit Solutions LLC.",
+    "platform": "linux",
+    "ports": [
+      ":80/tcp"
+    ],
+    "restart_policy": "unless-stopped",
+    "title": "Vaultwarden",
+    "type": 1,
+    "volumes": [
+      {
+        "bind": "/portainer/Files/AppData/Config/Vaultwarden",
+        "container": "/config"
+      }
+    ]
+  },
+  
+  {
+    "type": 1,
+    "title": "Joomla",
+    "description": "Another free and open-source CMS",
+    "categories": ["CMS"],
+    "platform": "linux",
+    "logo": "https://portainer-io-assets.sfo2.digitaloceanspaces.com/logos/joomla.png",
+    "image": "joomla:latest",
+    "env": [
+      {
+        "name": "JOOMLA_DB_HOST",
+        "label": "MySQL database host",
+        "type": "container"
+      },
+      {
+        "name": "JOOMLA_DB_PASSWORD",
+        "label": "Database password"
+      }
+    ],
+    "ports": ["80/tcp"],
+    "volumes": [
+      {
+        "container": "/var/www/html"
+      }
+    ]
+  },
+  {
+    "type": 1,
+    "title": "Drupal",
+    "description": "Open-source content management framework",
+    "categories": ["CMS"],
+    "platform": "linux",
+    "logo": "https://portainer-io-assets.sfo2.digitaloceanspaces.com/logos/drupal.png",
+    "image": "drupal:latest",
+    "ports": ["80/tcp"],
+    "volumes": [
+      {
+        "container": "/var/www/html"
+      }
+    ]
+  },
+  {
+    "type": 1,
+    "title": "Plone",
+    "description": "A free and open-source CMS built on top of Zope",
+    "note": "Default user and password are admin/admin",
+    "categories": ["CMS"],
+    "platform": "linux",
+    "logo": "https://portainer-io-assets.sfo2.digitaloceanspaces.com/logos/plone.png",
+    "image": "plone:latest",
+    "ports": ["8080/tcp"],
+    "volumes": [
+      {
+        "container": "/data"
+      }
+    ]
+  },
+  {
+    "type": 1,
+    "title": "Odoo",
+    "description": "Open-source business apps",
+    "categories": [
+      "project-management"
+    ],
+    "platform": "linux",
+    "logo": "https://portainer-io-assets.sfo2.digitaloceanspaces.com/logos/odoo.png",
+    "image": "odoo:latest",
+    "env": [
+      {
+        "name": "HOST",
+        "label": "PostgreSQL database host",
+        "type": "container"
+      },
+      {
+        "name": "USER",
+        "label": "Database user"
+      },
+      {
+        "name": "PASSWORD",
+        "label": "Database password"
+      }
+    ],
+    "ports": [
+      "8069/tcp"
+    ],
+    "volumes": [
+      {
+        "container": "/var/lib/odoo"
+      },
+      {
+        "container": "/mnt/extra-addons"
+      }
+    ]
+  },
+  {
+    "type": 3,
+    "title": "Nextcloud",
+    "name": "nextcloud",
+    "description": "Where are your photos and documents? With Nextcloud you pick a server of your choice, at home, in a data center or at a provider. And that is where your files will be. Nextcloud runs on that server, protecting your data and giving you access from your desktop or mobile devices.",
+    "logo": "https://raw.githubusercontent.com/SelfhostedPro/selfhosted_templates/master/Images/nextcloud-icon.png",
+    "categories": [
+      "Cloud",
+      "Productivity",
+      "Tools",
+      "Other",
+      "Web"
+    ],
+    "note": "The database user is nextcloud and the database is nextcloud_db. The host of the database will be located at the bottom of the DB conotainer in portainer.",
+    "platform": "linux",
+    "repository": {
+      "url": "https://github.com/andyyanguk/portainer_templates",
+      "stackfile": "stacks/nextcloud.yml"
+    },
+    "env": [
+      {
+        "name": "PUID",
+        "label": "PUID",
+        "default": "1000"
+      },
+      {
+        "name": "PGID",
+        "label": "PGID",
+        "default": "100"
+      },
+      {
+        "name": "TZ",
+        "label": "TZ"
+      },
+      {
+        "name": "DATABASE_PASSWORD",
+        "label": "DATABASE_PASSWORD"
+      },
+      {
+        "name": "MYSQL_ROOT_PASSWORD",
+        "label": "MYSQL_ROOT_PASSWORD"
+      },
+      {
+        "name": "PORT",
+        "label": "PORT"
+      }
+    ]
+  },
+  {
+    "type": 1,
+    "title": "Redmine",
+    "description": "Open-source project management tool",
+    "categories": [
+      "project-management"
+    ],
+    "platform": "linux",
+    "logo": "https://portainer-io-assets.sfo2.digitaloceanspaces.com/logos/redmine.png",
+    "image": "redmine:latest",
+    "ports": [
+      "3000/tcp"
+    ],
+    "volumes": [
+      {
+        "container": "/usr/src/redmine/files"
+      }
+    ]
+  },
+  {
+    "title": "Seafile",
+    "type": 1,
+    "categories": [
+      "Cloud",
+      "Productivity",
+      "Tools",
+      "Other",
+      "Web"
+    ],
+    "platform": "linux",
+    "image": "seafileltd/seafile:latest",
+    "ports": [
+      "8313:80/tcp"
+    ],
+    "env": [
+      {
+        "name": "SEAFILE_SERVER_HOSTNAME",
+        "label": "Server URL",
+        "default": "seafile.domain.com"
+      },
+      {
+        "name": "SEAFILE_ADMIN_EMAIL",
+        "label": "Admin Email",
+        "default": "admin@domain.com"
+      },
+      {
+        "name": "SEAFILE_ADMIN_PASSWORD",
+        "label": "Admin Password",
+        "default": "super_secret_password"
+      }
+    ],
+    "volumes": [
+      {
+        "container": "/shared",
+        "bind": "/home/andy/Seafile"
+      }
+    ]
+  }
+]
+}
