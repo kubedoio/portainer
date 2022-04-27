@@ -109,11 +109,13 @@
     "title": "Odoo",
     "description": "Open-source business apps",
     "categories": [
-      "project-management"
+      "ERP",
+      "CMS",
+      "CRM"
     ],
     "platform": "linux",
     "logo": "https://portainer-io-assets.sfo2.digitaloceanspaces.com/logos/odoo.png",
-    "image": "odoo:latest",
+    "image": "odoo:14.0",
     "env": [
       {
         "name": "HOST",
