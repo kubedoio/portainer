@@ -115,7 +115,10 @@
     ],
     "platform": "linux",
     "logo": "https://portainer-io-assets.sfo2.digitaloceanspaces.com/logos/odoo.png",
-    "image": "odoo:14.0",
+    "repository": {
+        "url": "https://github.com/kubedoio/portainer",
+        "stackfile": "stacks/odoo/docker-stack.yml"
+      },
     "env": [
       {
         "name": "HOST",
