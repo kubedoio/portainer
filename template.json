@@ -210,9 +210,8 @@
   },
     {
       "category": [
-        "Backup:",
         "Cloud",
-        "Other",
+        "FileShare",
         "Tools"
       ],
       "description": "Syncthing replaces proprietary sync and cloud services with something open, trustworthy and decentralized. Your data is your data alone and you deserve to choose where it is stored, if it is shared with some third party and how it's transmitted over the Internet.",
@@ -256,8 +255,6 @@
       "categories": [
         "Backup",
         "Cloud",
-        "Other",
-        "Productivity",
         "Tools"
       ],
       "description": "Free backup software to store encrypted backups online, Duplicati works with standard protocols like FTP, SSH, WebDAV as well as popular services like Microsoft OneDrive, Amazon Cloud Drive and S3, Google Drive, box.com, Mega, hubiC and many others.",
@@ -319,15 +316,65 @@
         }
       ]
     },
+        {
+      "categories": [
+        "Tools",
+        "Authentication"
+      ],
+      "description": "An open-source authentication and authorization server providing 2-factor authentication and single sign-on (SSO) for your applications via a web portal.",
+      "env": [
+        {
+          "label": "TZ",
+          "name": "TZ"
+        }
+      ],
+      "image": "authelia/authelia:latest",
+      "logo": "https://raw.githubusercontent.com/mikestraney/portainer-templates/master/Images/authelia.png",
+      "name": "authelia",
+      "note": "Requires a configuration.yml file in order to work. Documentation is Available \u003ca href='https://docs.authelia.com/deployment/deployment-ha'\u003ehere\u003c/a\u003e.",
+      "platform": "linux",
+      "ports": [
+        "9091:9091/tcp"
+      ],
+      "restart_policy": "unless-stopped",
+      "title": "Authelia",
+      "type": 1,
+      "volumes": [
+        {
+          "bind": "/portainer/Files/AppData/Config/Authelia",
+          "container": "/etc/authelia/"
+        }
+      ]
+    },
+            {
+            "type": 1,
+            "title": "Urbackup",
+            "description": "Open-source network backup",
+            "categories": [
+                "backup"
+            ],
+            "platform": "linux",
+            "note": "This application web interface is exposed on the port 55414 inside the container.",
+            "logo": "https://portainer-io-assets.sfo2.digitaloceanspaces.com/logos/urbackup.png",
+            "image": "cfstras/urbackup",
+            "ports": [
+                "55413/tcp",
+                "55414/tcp",
+                "55415/tcp",
+                "35622/tcp"
+            ],
+            "volumes": [
+                {
+                    "container": "/var/urbackup"
+                }
+            ]
+        },
   {
     "title": "Seafile",
     "type": 1,
     "categories": [
       "Cloud",
-      "Productivity",
-      "Tools",
-      "Other",
-      "Web"
+      "FileShare"
     ],
     "platform": "linux",
     "image": "seafileltd/seafile:latest",
