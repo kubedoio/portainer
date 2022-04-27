@@ -1,0 +1,1 @@
+# Kubedo portainer templates
